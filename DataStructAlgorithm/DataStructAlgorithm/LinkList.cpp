@@ -35,7 +35,6 @@ void PrintListNode(Node* pNode)
 	cout << tem->data;
 	delete tem;
 }
-
 int main()
 {
 	int n = 0, x = 0;
