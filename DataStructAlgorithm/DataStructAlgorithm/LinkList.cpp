@@ -24,6 +24,31 @@ Node* AddANode(Node* pNode, int value)
 	return newNode;
 }
 
+Node* AddAnyPosition(Node* pNode, int pos, int value)
+{
+	Node* newNode = CreatANode(value);
+	Node* temp = pNode;
+	for (int i = 1; i < pos-1; i++)
+	{
+		if (temp->next != NULL)
+			temp = temp->next;
+		else
+			break;
+	}
+	if (pos != 1)
+	{
+		newNode->next = temp->next;
+		temp->next = newNode;
+	}
+	else
+	{
+		newNode->next = temp;
+		pNode = newNode;
+	}
+	return pNode;
+	//temp = NULL;
+}
+
 void PrintListNode(Node* pNode)
 {
 	Node* tem = pNode;
@@ -35,6 +60,7 @@ void PrintListNode(Node* pNode)
 	cout << tem->data;
 	delete tem;
 }
+
 int main()
 {
 	int n = 0, x = 0;
@@ -50,6 +76,7 @@ int main()
 		cin >> x;
 		l = AddANode(l,x);
 	}
+	p0=AddAnyPosition(p0, 4, 4);
 	PrintListNode(p0);
 	l = NULL;
 	p0 = NULL;
