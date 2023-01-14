@@ -66,18 +66,6 @@ Node* RevertList(Node* head)
 	return head;
 }
 
-Node* RevertCurList(Node* head)
-{
-	if (head == NULL || head->next == NULL)
-	{
-		return head;
-	} 
-	Node* Rest = RevertCurList(head->next);
-	head -> next -> next = head;
-	head->next = NULL;
-	return Rest;
-}
-
 void PrintListNode(Node* pNode)
 {
 	Node* tem = pNode;
@@ -87,8 +75,7 @@ void PrintListNode(Node* pNode)
 		tem = tem->next;
 	}
 	cout << tem->data;
-	tem = NULL;
-	delete tem;
+	/*delete tem;*/
 }
 
 
@@ -97,29 +84,23 @@ int main()
 	int n = 0, x = 0;
 	std::cout << "Nhap vao so luong node: ";
 	std::cin >> n;
-	if (n != 0)
+	cout << "Nhap vao gia tri cho node dau tien: ";
+	cin >> x;
+	Node* p0 = CreatANode(x);
+	Node* l = p0;
+	for (int i = 1; i < n; i++)
 	{
-		cout << "Nhap vao gia tri cho node dau tien: ";
+		cout << "Nhap gia tri cho node " << i + 1 << ": ";
 		cin >> x;
-		Node* p0 = CreatANode(x);
-		Node* l = p0;
-		for (int i = 1; i < n; i++)
-		{
-			cout << "Nhap gia tri cho node " << i + 1 << ": ";
-			cin >> x;
-			l = AddANode(l, x);
-		}
-		//p0=AddAnyPosition(p0, 4, 4);
-		PrintListNode(p0);
-		//p0 = RevertList(p0);
-		p0 = RevertCurList(p0);
-		PrintListNode(p0);
-		l = NULL;
-		p0 = NULL;
-		delete l;
-		delete p0;
+		l = AddANode(l,x);
 	}
-	else
-		cout << "Khong tao duong LinkList";
+	//p0=AddAnyPosition(p0, 4, 4);
+	PrintListNode(p0);
+	p0 = RevertList(p0);
+	PrintListNode(p0);
+	l = NULL;
+	p0 = NULL;
+	delete l;
+	delete p0;
 	return 0;
 }
