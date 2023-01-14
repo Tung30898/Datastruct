@@ -48,25 +48,23 @@ Node* AddAnyPosition(Node* pNode, int pos, int value)
 	return pNode;
 }
 
-//Node* RevertList(Node* head)
-//{
-//	cout << "a";
-//	//Node* temp = head;
-//	Node* pre = new Node;
-//	Node* cur = head;
-//	Node* after = new Node;
-//	cout << "a";
-//	while (cur != NULL)
-//	{
-//		after = cur->next;
-//		cur->next = pre;
-//		pre = cur;
-//		cur = after;
-//	}
-//	head = pre;
-//	cout << "a";
-//	return head;
-//}
+Node* RevertList(Node* head)
+{
+	Node* pre = NULL;
+	Node* cur = head;
+	Node* after = NULL;
+	while (cur != NULL)
+	{
+		after = cur->next;
+		cur->next = pre;
+		pre = cur;
+		cur = after;
+	}
+	head = pre;
+	after = NULL;
+	cur = NULL;
+	return head;
+}
 
 void PrintListNode(Node* pNode)
 {
@@ -77,7 +75,7 @@ void PrintListNode(Node* pNode)
 		tem = tem->next;
 	}
 	cout << tem->data;
-	delete tem;
+	/*delete tem;*/
 }
 
 
@@ -98,12 +96,11 @@ int main()
 	}
 	//p0=AddAnyPosition(p0, 4, 4);
 	PrintListNode(p0);
-	//cout << "a";
-	//RevertList(p0);
-	//PrintListNode(p0);
-	//l = NULL;
-	//p0 = NULL;
-	//delete l;
-	//delete p0;
+	p0 = RevertList(p0);
+	PrintListNode(p0);
+	l = NULL;
+	p0 = NULL;
+	delete l;
+	delete p0;
 	return 0;
 }
