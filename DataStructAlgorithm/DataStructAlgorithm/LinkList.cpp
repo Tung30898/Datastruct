@@ -66,6 +66,18 @@ Node* RevertList(Node* head)
 	return head;
 }
 
+Node* RevertCurList(Node* head)
+{
+	if (head == NULL || head->next == NULL)
+	{
+		return head;
+	} 
+	Node* Rest = RevertCurList(head->next);
+	head -> next -> next = head;
+	head->next = NULL;
+	return Rest;
+}
+
 void PrintListNode(Node* pNode)
 {
 	Node* tem = pNode;
@@ -75,7 +87,7 @@ void PrintListNode(Node* pNode)
 		tem = tem->next;
 	}
 	cout << tem->data;
-	/*delete tem;*/
+	delete tem;
 }
 
 
@@ -96,7 +108,8 @@ int main()
 	}
 	//p0=AddAnyPosition(p0, 4, 4);
 	PrintListNode(p0);
-	p0 = RevertList(p0);
+	//p0 = RevertList(p0);
+	p0 = RevertCurList(p0);
 	PrintListNode(p0);
 	l = NULL;
 	p0 = NULL;
